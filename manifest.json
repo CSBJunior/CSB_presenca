@@ -1,0 +1,15 @@
+{
+  "name": "CSB Júnior - Presença RG",
+  "short_name": "CSB RG",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#d9e5ff",
+  "theme_color": "#0b1b5e",
+  "icons": [
+    {
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAARVBMVEX///8AAABJSUmcnJx5eXk4ODh3d3dvb2+7u7vGxsa0tLRYWFifn5/T09PMzMwkJCSgoKDk5OR/f3/MzMzt7e2Li4uYmJg6OjrObHQ2AAABbElEQVR4nO2USQ6DMAxFLeOIMMP//4ZCVE0Qv1Qtrm+Qf4RQvh0ElhbQmSrAXrJgEVBTSutjXzhBOKSBQDCpLRsFq6nVWoWPEljxFON4QEd1bL83YgIBgZPXYkaR5LllUQ0KiIYzGYgDTPFQW+TtUqYHjBAZukEtjUbZQ6z7x1DRGJ+dwfUeDTbi2y2YVY3GXKSmiyfghDwtTkX+KY4HoE+Lf0J4MXUVDV5dYZCFwB/CuVckDpbZeN/g9TD3MM3WxRDOe21n2hyIX/lK3v5DLi2Ef1vJe4Xlt2s6hfW/DvD3BOe7F58kLgmPsM/HX5yYAAAAAAAAAAAAAAAAA4Df4ALkxPPcDTNYAAAAASUVORK5CYII=",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSB Júnior - Coleta de Presença RG</title>
+
+  <!-- Favicon embutido -->
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAARVBMVEX///8AAABJSUmcnJx5eXk4ODh3d3dvb2+7u7vGxsa0tLRYWFifn5/T09PMzMwkJCSgoKDk5OR/f3/MzMzt7e2Li4uYmJg6OjrObHQ2AAABbElEQVR4nO2USQ6DMAxFLeOIMMP//4ZCVE0Qv1Qtrm+Qf4RQvh0ElhbQmSrAXrJgEVBTSutjXzhBOKSBQDCpLRsFq6nVWoWPEljxFON4QEd1bL83YgIBgZPXYkaR5LllUQ0KiIYzGYgDTPFQW+TtUqYHjBAZukEtjUbZQ6z7x1DRGJ+dwfUeDTbi2y2YVY3GXKSmiyfghDwtTkX+KY4HoE+Lf0J4MXUVDV5dYZCFwB/CuVckDpbZeN/g9TD3MM3WxRDOe21n2hyIX/lK3v5DLi2Ef1vJe4Xlt2s6hfW/DvD3BOe7F58kLgmPsM/HX5yYAAAAAAAAAAAAAAAAA4Df4ALkxPPcDTNYAAAAASUVORK5CYII=">
+
+  <!-- Manifesto e Service Worker -->
+  <link rel="manifest" href="manifest.json">
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch(err => console.log('SW erro:', err));
+      });
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(180deg, #d9e5ff 0%, #f3f6ff 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      margin: 0;
+      padding-top: 130px;
+    }
+
+    .topo {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(6px);
+      padding: 15px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      z-index: 10;
+    }
+
+    .titulo {
+      color: #0b1b5e;
+      font-size: clamp(20px, 4.5vw, 28px);
+      font-weight: bold;
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    .subtitulo {
+      color: #20337e;
+      font-size: clamp(16px, 3.5vw, 20px);
+      margin: 4px 0 0 0;
+    }
+
+    h1 {
+      color: #0b1b5e;
+      font-size: clamp(20px, 5vw, 26px);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    select {
+      padding: 14px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      width: 90%;
+      max-width: 320px;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    button {
+      width: 90%;
+      max-width: 320px;
+      padding: 14px;
+      background-color: #0b1b5e;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 17px;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #122e7b;
+      transform: scale(1.03);
+    }
+
+    #mensagem {
+      margin-top: 25px;
+      font-weight: bold;
+      color: #0b1b5e;
+      text-align: center;
+      background: rgba(255,255,255,0.8);
+      padding: 10px 16px;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 340px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topo">
+    <h2 class="titulo">CSB Júnior</h2>
+    <p class="subtitulo">Coleta de Presença RG</p>
+  </div>
+
+  <h1>Selecione seu nome:</h1>
+
+  <select id="nome">
+    <option value="">-- Escolha seu nome --</option>
+    <option>Anelise</option>
+    <option>Bia Lavez (D)</option>
+    <option>Eduardo</option>
+    <option>Fernanda</option>
+    <option>Fran (D)</option>
+    <option>Gabriel</option>
+    <option>Gabriela</option>
+    <option>Georgia</option>
+    <option>Giovani</option>
+    <option>Giulia</option>
+    <option>Isa Fidelis (P)</option>
+    <option>Isabele</option>
+    <option>João</option>
+    <option>Julia I. (D)</option>
+    <option>Lara</option>
+    <option>Laura</option>
+    <option>Luanne</option>
+    <option>Lucas</option>
+    <option>Lucas L.</option>
+    <option>Lucas O.</option>
+    <option>Luiza</option>
+    <option>Lupetti</option>
+    <option>Manuela</option>
+    <option>Marina</option>
+    <option>Mayara</option>
+    <option>Nicole</option>
+    <option>Rafa</option>
+    <option>Thiago E</option>
+    <option>Tiago</option>
+    <option>Vanessa</option>
+    <option>Vitória N.</option>
+  </select>
+
+  <button onclick="registrarPresenca()">Registrar Presença</button>
+  <div id="mensagem"></div>
+
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbyZ31zb-QRdK5LzkLNGDRQ1qRa0CVgCWu0KRymJs9nmU4qW9yBJb_oGNCSnxBToOWO3ig/exec";
+
+    function registrarPresenca() {
+      const nome = document.getElementById("nome").value;
+      const mensagem = document.getElementById("mensagem");
+
+      if (!nome) {
+        mensagem.textContent = "⚠️ Por favor, selecione seu nome.";
+        mensagem.style.color = "red";
+        return;
+      }
+
+      fetch(scriptURL, {
+        method: 'POST',
+        body: new URLSearchParams({ nome: nome })
+      })
+      .then(response => response.text())
+      .then(result => {
+        mensagem.textContent = `✅ Presença de ${nome} registrada com sucesso!`;
+        mensagem.style.color = "green";
+        setTimeout(() => mensagem.textContent = "", 4000);
+      })
+      .catch(error => {
+        mensagem.textContent = "❌ Erro ao registrar presença.";
+        mensagem.style.color = "red";
+        console.error(error);
+      });
+    }
+  </script>
+</body>
+</html>
