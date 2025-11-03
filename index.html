@@ -156,38 +156,40 @@
   <div id="mensagem"></div>
 
   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbyZ31zb-QRdK5LzkLNGDRQ1qRa0CVgCWu0KRymJs9nmU4qW9yBJb_oGNCSnxBToOWO3ig/exec";
+  const scriptURL = "https://script.google.com/macros/s/AKfycbyZ31zb-QRdK5LzkLNGDRQ1qRa0CVgCWu0KRymJs9nmU4qW9yBJb_oGNCSnxBToOWO3ig/exec";
 
-    function registrarPresenca() {
-      const nome = document.getElementById("nome").value;
-      const mensagem = document.getElementById("mensagem");
+  async function registrarPresenca() {
+    const nome = document.getElementById("nome").value;
+    const mensagem = document.getElementById("mensagem");
 
-      if (!nome) {
-        mensagem.textContent = "⚠️ Por favor, selecione seu nome.";
-        mensagem.style.color = "red";
-        return;
-      }
-
-      mensagem.textContent = `⏳ Registrando presença de ${nome}...`;
-      mensagem.style.color = "#0b1b5e";
-
-      fetch(scriptURL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({ nome: nome })
-      })
-      .then(response => response.text())
-      .then(result => {
-        mensagem.textContent = `✅ Presença de ${nome} registrada com sucesso!`;
-        mensagem.style.color = "green";
-        setTimeout(() => mensagem.textContent = "", 4000);
-      })
-      .catch(error => {
-        mensagem.textContent = "❌ Erro ao registrar presença.";
-        mensagem.style.color = "red";
-        console.error(error);
-      });
+    if (!nome) {
+      mensagem.textContent = "⚠️ Por favor, selecione seu nome.";
+      mensagem.style.color = "red";
+      return;
     }
-  </script>
+
+    // 🟢 Mostra confirmação imediata
+    mensagem.textContent = `✅ Presença de ${nome} registrada! (enviando...)`;
+    mensagem.style.color = "green";
+
+    // 🕐 Envia em segundo plano, sem esperar resposta
+    try {
+      navigator.sendBeacon
+        ? navigator.sendBeacon(scriptURL, new URLSearchParams({ nome }))
+        : fetch(scriptURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams({ nome })
+          });
+    } catch (err) {
+      console.error("Erro no envio:", err);
+    }
+
+    // Limpa a mensagem após alguns segundos
+    setTimeout(() => (mensagem.textContent = ""), 4000);
+  }
+</script>
+
 </body>
 </html>
+
